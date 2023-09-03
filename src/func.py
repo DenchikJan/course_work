@@ -73,3 +73,16 @@ def cart_number_mask(cart_number: str) -> str:
 def formatting_date(str_date: str) -> datetime:
     dt = maya.parse(str_date).datetime()
     return dt.strftime("%d.%m.%Y")
+
+
+def print_description(array: dict, key) -> str:
+    if key in array.keys():
+        from_ = array[key].split()
+        if len(from_[-1]) == 16:
+            return f'{" ".join(from_[:-1])} {cart_number_mask(from_[-1])}'
+        elif len(from_[-1]) == 20:
+            return f'{" ".join(from_[:-1])} {account_number_mask(from_[-1])}'
+        else:
+            return "ERROR"
+    else:
+        return "Not date"

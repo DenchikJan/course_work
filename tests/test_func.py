@@ -1,6 +1,7 @@
 import pytest
 from pathlib import Path
-from src.func import read_file, filter_list, sort_list, slise_list, account_number_mask, cart_number_mask,formatting_date
+from src.func import (read_file, filter_list, sort_list, slise_list, account_number_mask, cart_number_mask,
+                      formatting_date, print_description)
 
 path = Path("files", "test_file.json")
 correct_cart_number = "1596837868705199"
@@ -50,3 +51,10 @@ def test_cart_number_mask():
 
 def test_formatting_date():
     assert formatting_date(str_date) == format_date
+
+
+def test_print_description(array_fixture_8, array_fixture_9):
+    assert print_description(array_fixture_8, "from") == "Maestro 1596 83** **** 5199"
+    assert print_description(array_fixture_8, "to") == "Счет **9589"
+    assert print_description(array_fixture_9, "from") == "Not date"
+    assert print_description(array_fixture_9, "to") == "ERROR"
