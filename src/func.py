@@ -21,3 +21,35 @@ def filter_list(array: list, key_name, filter_name) -> list:
                 if elements[key_name] == filter_name:
                     new_list.append(elements)
     return new_list
+
+
+def sort_list(array: list, key_sort, reverse=False) -> list:
+    array.sort(key=lambda dictionary: dictionary[key_sort], reverse=reverse)
+    return array
+
+
+def slise_list(array: list, start=0, end=5) -> list:
+    if start > end:
+        start_tmp = start
+        start = end
+        end = start_tmp
+
+    if start < 0:
+        start_point = 0
+    elif start >= len(array):
+        start_point = len(array) - 1
+    else:
+        start_point = start
+
+    if end < 0:
+        end_point = 0
+    elif end > len(array):
+        end_point = len(array)
+    else:
+        end_point = end
+
+    if start_point == end_point:
+        end_point += 1
+        return array[start_point:end_point]
+    else:
+        return array[start_point:end_point]
