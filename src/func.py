@@ -53,3 +53,17 @@ def slise_list(array: list, start=0, end=5) -> list:
         return array[start_point:end_point]
     else:
         return array[start_point:end_point]
+
+
+def account_number_mask(account_number: str) -> str:
+    if len(account_number) == 20:
+        return f"**{account_number[-4:]}"
+    else:
+        return ""
+
+
+def cart_number_mask(cart_number: str) -> str:
+    if len(cart_number) == 16:
+        return f"{cart_number[:4]} {cart_number[4:6]}** **** {cart_number[-4:]}"
+    else:
+        return ""
