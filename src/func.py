@@ -1,5 +1,6 @@
 import json
-
+import maya
+import datetime
 
 def read_file(file_name) -> list:
     """
@@ -67,3 +68,8 @@ def cart_number_mask(cart_number: str) -> str:
         return f"{cart_number[:4]} {cart_number[4:6]}** **** {cart_number[-4:]}"
     else:
         return ""
+
+
+def formatting_date(str_date: str) -> datetime:
+    dt = maya.parse(str_date).datetime()
+    return dt.strftime("%d.%m.%Y")

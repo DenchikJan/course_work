@@ -1,72 +1,16 @@
 import pytest
 from pathlib import Path
-from src.func import read_file, filter_list, sort_list, slise_list, account_number_mask, cart_number_mask
+from src.func import read_file, filter_list, sort_list, slise_list, account_number_mask, cart_number_mask,formatting_date
 
 path = Path("files", "test_file.json")
-
-
-@pytest.fixture
-def array_fixture_1():
-    return [{"first_name": "Denis", "last_name": "Volchkov"},
-            {"first_name": "Vladimir", "last_name": "Ivanov"},
-            {"first_name": "Ksenia", "last_name": "Petrova"},
-            {"first_name": "Daria", "last_name": "Mayorova"},
-            {"first_name": "Anton", "last_name": "Sidorov"}
-            ]
-
-
-@pytest.fixture
-def array_fixture_2():
-    return [{"first_name": "Denis", "last_name": "Volchkov"},
-            {"first_name": "Vladimir", "last_name": "Ivanov"},
-            {"first_name": "Ksenia", "last_name": "Petrova"},
-            {"first_name": "Daria", "last_name": "Mayorova"},
-            {"first_name": "Anton", "last_name": "Sidorov"},
-            6
-            ]
-
-
-@pytest.fixture
-def array_fixture_3():
-    return [{"first_name": "Denis", "last_name": "Volchkov"}]
-
-
-@pytest.fixture
-def array_fixture_4():
-    return [{'first_name': 'Vladimir', 'last_name': 'Ivanov'},
-            {'first_name': 'Ksenia', 'last_name': 'Petrova'},
-            {'first_name': 'Denis', 'last_name': 'Volchkov'},
-            {'first_name': 'Daria', 'last_name': 'Mayorova'},
-            {'first_name': 'Anton', 'last_name': 'Sidorov'}
-            ]
-
-
-@pytest.fixture
-def array_fixture_5():
-    return [{"first_name": "Denis", "last_name": "Volchkov"},
-            {"first_name": "Vladimir", "last_name": "Ivanov"}
-            ]
-
-
-@pytest.fixture
-def array_fixture_6():
-    return [{"first_name": "Ksenia", "last_name": "Petrova"},
-            {"first_name": "Daria", "last_name": "Mayorova"},
-            {"first_name": "Anton", "last_name": "Sidorov"}
-            ]
-
-
-@pytest.fixture
-def array_fixture_7():
-    return [{"first_name": "Anton", "last_name": "Sidorov"}]
-
-
 correct_cart_number = "1596837868705199"
 correct_account_number = "64686473678894779589"
 account_mask = "**9589"
 no_correct_cart_number = "15968378687051"
 no_correct_correct_account_number = "6468647367889477958900"
 cart_mask = "1596 83** **** 5199"
+str_date = "2019-07-03T18:35:29.512364"
+format_date = "03.07.2019"
 
 
 def test_read_file(array_fixture_1):
@@ -102,3 +46,7 @@ def test_account_number_mask():
 def test_cart_number_mask():
     assert cart_number_mask(correct_cart_number) == cart_mask
     assert cart_number_mask(no_correct_cart_number) == ""
+
+
+def test_formatting_date():
+    assert formatting_date(str_date) == format_date
