@@ -2,6 +2,7 @@ import json
 import maya
 import datetime
 
+
 def read_file(file_name) -> list:
     """
     Читает файл file_name json
@@ -12,74 +13,6 @@ def read_file(file_name) -> list:
         raw_content = file.read()
         content = json.loads(raw_content)
     return content
-
-
-def filter_list(array: list, key_name, filter_name) -> list:
-    """
-    И выдает список из словарей в которых есть заданый фильтр.
-    :param array: исходный список.
-    :param key_name: ключ для фильтра
-    :param filter_name: фильтр
-    :return: список
-    """
-    new_list = []
-    for elements in array:
-        if type(elements) == dict:
-            if key_name in elements.keys():
-                if elements[key_name] == filter_name:
-                    new_list.append(elements)
-    return new_list
-
-
-def sort_list(array: list, key_sort, reverse=False) -> list:
-    """
-    Сорует список на основе элемента словоря по заданному ключу
-    :param array: исходный список.
-    :param key_name: ключ для сортировки
-    :param filter_name: по возростанию при reverse=False и по убыванию при reverse=True
-    :return: список
-    """
-    array.sort(key=lambda dictionary: dictionary[key_sort], reverse=reverse)
-    return array
-
-
-def slise_list(array: list, start=0, end=5) -> list:
-    """
-    Возвращает новый массив, содержащий копию части исходного массива.
-    :param array: исходный список.
-    :param start: индекс, по которому начинается извлечение. Если индекс отрицательный,
-    start = 0, если индекс больше длинны списк, start = длинна списка - 1. По умолчанию равен нулю.
-    :param end: индекс, по которому заканчивается извлечение (не включая элемент с индексом end).
-    Если индекс отрицательный, start = 0, если индекс больше длинны списк, start = длинна списка. 
-    По умолчанию равен пяти.
-    start должен быть меньше end.
-    Если start = end, то end = end + 1.
-    :return: список
-    """
-    if start > end:
-        start_tmp = start
-        start = end
-        end = start_tmp
-
-    if start < 0:
-        start_point = 0
-    elif start >= len(array):
-        start_point = len(array) - 1
-    else:
-        start_point = start
-
-    if end < 0:
-        end_point = 0
-    elif end > len(array):
-        end_point = len(array)
-    else:
-        end_point = end
-
-    if start_point == end_point:
-        end_point += 1
-        return array[start_point:end_point]
-    else:
-        return array[start_point:end_point]
 
 
 def account_number_mask(account_number: str) -> str:
