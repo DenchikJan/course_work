@@ -1,14 +1,17 @@
-from src.func import (read_file, filter_list, sort_list, slise_list, formatting_date, print_description)
+from src.func import read_file, formatting_date, print_description
+from src.class_list import ListMod
 
 cnt = 0
 print_from = ""
 print_to = ""
-array = read_file("../files/operations.json")
-array = filter_list(array, "state", "EXECUTED")
-array = sort_list(array, "date", True)
-array = slise_list(array)
 
-for element in array:
+array = read_file("../files/operations.json")
+operations = ListMod(array)
+operations.filter_list("state", "EXECUTED")
+operations.sort_list("date", True)
+operations.slise_list(0, 5)
+
+for element in operations.array:
     cnt += 1
     print(f"---{cnt}---")
     print(formatting_date(element['date']), element['description'])
